@@ -1,0 +1,67 @@
+{
+ "name": "Interactive Graphics",
+ "children": [
+  {
+   "name": "Rendering",
+   "children": [
+    {
+     "name": "Multivariate",
+     "children": [
+      {"name": "Scatterplots", "size": 3938},
+      {"name": "Traces", "size": 3812},
+      {"name": "Glyphs", "size": 6714}
+     ]
+    },
+    {
+     "name": "1-dimensional",
+     "children": [
+      {"name": "Histograms", "size": 3534},
+      {"name": "Density", "size": 5731},
+      {"name": "Cdf", "size": 7840},
+      {"name": "Q-Q plots", "size": 5914},
+      {"name": "Jitter plots", "size": 3416}, 
+      {"name": "Boxplots", "size": 3416}
+     ]
+    },
+    {"name": "Time Series", "size": 1234},  
+    {
+      "name": "Functional", 
+      "children": [
+      {"name": "Perspective plots", "size": 3416}, 
+      {"name": "Level plots", "size": 3416}
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Manipulation",
+   "children": [
+    {
+     "name": "Finding Gestalt (Focusing individual views)",
+     "children": [
+      {"name": "3-D data rotations", "size": 1983},
+      {"name": "Pan and Zoom", "size": 2047}
+     ]
+    },
+        {
+     "name": "Posing queries (Linking multiple views)",
+     "children": [
+      {"name": "Linked Brushing", "size": 1629},
+      {"name": "Hovering + Tooltips", "size": 1675},
+      {"name": "Sliders", "size": 2042}
+     ]
+    },
+
+    {
+     "name": "Making comparisons (Arranging many views)",
+     "children": [
+      {"name": "Scatterplot matrix", "size": 1675},
+      {"name": "Faceting", "size": 2042}, 
+      {"name": "Small Multiples", "size": 2042}, 
+      {"name": "Sorting & Filtering", "size": 2042}
+     ]
+    }
+   ]
+  }
+ ]
+}
