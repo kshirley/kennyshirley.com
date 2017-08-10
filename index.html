@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+  <link rel="stylesheet" href="style.css"/>
+  <title>Kenny Shirley - Home Page</title>
+</head>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-39167247-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<body>
+
+<table class="main" cellspacing="0" cellpadding="0">
+
+
+<tr>
+<td class="topleft" width="15%"></td>
+<td class="topright" width="100%">
+    <img width=162 height=192 src="figures/kshirley_att_idphoto2.jpg" style="float:left; margin-right: 30px; margin-left:10px">
+    Kenny Shirley<br>
+		Statistician
+    <p>
+			I’m a research scientist in the demand forecasting group at Amazon in New York City. 
+			My research interests (past and present) include hierarchical Bayesian modeling, MCMC methods,
+			data and model visualization, text mining, and other topics related to applied statistics.
+    </p>
+    <p>
+    This is my personal site, which is a mix of statistics research, side projects (mostly sports-related) and other stuff.
+    </p>
+</td>
+</tr>
+
+<tr>
+<td class="bottomleft" valign="top" width="15%">
+  <ul>
+    <li><a  href="#">Home</a></li>
+    <li><a  href="oldnews.html">Old News</a></li>
+    <li><a  href="publications.html">Publications</a></li>
+    <li><a  href="software.html">Software</a></li>
+    <li><a  href="contact.html">Contact</a></li>
+    <li><a  href="kennyshirley_cv_june2016.pdf">CV</a></li>
+  </ul>
+</td>
+<td class="bottomright" width="100%">
+<p><b>NEWS</b></p>
+
+<hr>
+
+<p>
+6/26/2016:
+</p>
+
+<p>
+After 6.5 wonderful years in the <a href='http://stats.research.att.com/'>statistics research department</a> at AT&amp;T Labs, I was ready for something new, and so I’ve joined the demand forecasting team at Amazon in New York City. I’ll be doing demand forecasting for retail products within the supply chain organization (aka <a href='https://www.amazon.jobs/en/teams/supply-chain-optimization-technologies'>SCOT</a>) with colleagues that include <a href='http://gosset.wharton.upenn.edu/~foster/index.pl'>Dean Foster</a> and <a href='http://stat.rutgers.edu/home/ldicker/Home.html'>Lee Dicker</a>. I’m excited for the new challenge!
+</p>
+
+<hr>
+
+<p>
+1/12/2016:
+</p>
+
+<p>
+This is a very belated post to share the <a href='jsm2015'>slides</a> from my
+August 2015 JSM talk about my
+<a href='https://github.com/kshirley/summarytrees'>
+  <span style='font-family: courier'>summarytrees</span> R package</a>. I've finally
+converted our code to compute and visualize summary trees
+(co-written with Howard Karloff) into an R package which contains a
+mixture of R, C, and javascript code. The GitHub repo for the
+package is
+<a href='https://github.com/kshirley/summarytrees'>here</a>.
+It's not quite a finished product; I plan to clean up some of the
+internals before I submit it to CRAN.
+</p>
+<p>
+That being said, I'd love any comments, suggestions, or feedback on the
+current development version.
+</p>
+<p>
+For a couple of demos, check out one of these:
+<ul>
+  <li>The <a href='summarytrees/gauss'>Carl Gauss subtree of the Mathematics
+Genealogy Project</a>
+  </li>
+<li>The <a href='summarytrees/dmozsports'>Sports subtree of the DMOZ directory of webpages</a>
+</li>
+</ul>
+For a vignette illustrating the use of the package, see the
+ <a href='summarytrees/vignettes/Gauss.html'>Gauss vignette</a>
+or the <a href='summarytrees/vignettes/DMOZ.html'>DMOZ vignette</a>.
+<a href='summarytrees/dmoz'><img src = 'figures/summarytree-pic.png' width=600px></a>
+<br>
+<br>
+[Pictured: 18-node maximum entropy summary tree of DMOZ web directory]
+</p>
+
+<hr>
+
+<p>
+5/14/2015:
+</p>
+
+<p>
+Next week Thursday (May 21st) my colleague Wei Wang will present <a href='papers/wang_shirley_w2sp_2015.pdf'>our paper</a> "Breaking Bad: Detecting Malicious Domains Using Word Segmentation" at the <a href='http://ieee-security.org/TC/SPW2015/W2SP/'>Web 2.0 Security and Privacy (W2SP) workshop</a> in San Jose, CA. In the paper we describe how we segmented a set of domain names into individual tokens, and then used the resulting bag of words as an additional feature set to improve the predictive accuracy of our model to detect malicious domains. The outcome variable ("maliciousness") was gathered from the <a href='https://www.mywot.com/'>Web of Trust</a>, a crowdsourced website reputation rating service.
+</p>
+
+<p>
+Some highlights of this project were:
+<ol>
+<li>Reading <a href='http://norvig.com/ngrams/'>Peter Norvig's chapter</a> of the book Beautiful Data, which includes a description of the word segmentation algorithm, along with python code to implement it. On a side note, this is the second place I've seen an example of using statistics to break a substitution cipher. The first time was in <a href='http://statweb.stanford.edu/~cgates/PERSI/papers/MCMCRev.pdf'>this very entertaining paper</a> by Persi Diaconis.
+</li>
+<li>Using the <a href='http://cran.r-project.org/web/packages/glmnet/index.html'>R package <span style='font-family: courier'>glmnet</span></a> to do lasso-penalized logistic regression (a really nice way to handle large numbers of features).
+</li>
+<li>
+Discovering that the names of certain basketball players are strongly associated with malicious domains (at least according to our definition of "malicious"), including "kobe", "jordan", and "lebron". I guess Kevin Durant and Carmelo Anthony are probably jealous that their names aren't yet showing up in the domain names of phishing websites as often as their peers.
+</li>
+</ol>
+</p>
+
+<p style='text-align:center'>
+<img src='figures/fig_auc_v2.jpg' width=600 height=333px>
+</p>
+
+<hr>
+
+<p>
+1/28/2015:
+</p>
+
+<p>
+I'm happy to report that my R package for visualizing topic models, LDAvis, is now on CRAN! It's a D3.js interactive visualization that's designed help you interpret the topics in a topic model fit to a corpus of text using LDA. I co-wrote it with <a href='http://cpsievert.github.io/'>Carson Sievert</a>, and we also wrote a paper about it (including a user study) that we shared at the <a href='http://nlp.stanford.edu/events/illvi2014/index.html'>2014 ACL Workshop on Interactive Language Learning, Visualization, and Interfaces</a> in Baltimore last June. Here are the relevant links -- we'd love to hear any questions/comments/feedback.
+</p>
+
+<p>
+<ul style='list-style-type: disc'>
+<li> The package is <a href='https://github.com/cpsievert/LDAvis'>hosted on github here</a>.
+<li> There is a <a href='http://cpsievert.github.io/LDAvis/newsgroup/vis/'>demo of the visualization here</a>, where we visualize the fit of a 40-topic model to the Twenty Newsgroups data.
+<li> Here is <a href='http://nlp.stanford.edu/events/illvi2014/papers/sievert-illvi2014.pdf'>the paper</a>.
+</ul>
+</p>
+
+<p style='text-align:center'>
+<a href='LDAvis'><img src='figures/ldavis-screenshot.png' width=600 height=375px></a>
+</p>
+
+<hr>
+
+<p>
+For older news, <a href="oldnews.html">click here</a>.
+</p>
+
+<script language="Javascript">
+document.write("This page was last modified on: " + document.lastModified +"");
+</script>
+
+</td>
+</tr>
+</table>
+
+</body>
+
+</html>
