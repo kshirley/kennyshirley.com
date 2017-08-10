@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+  <title>Supplementary Materials: Deconstructing domain names to reveal latent
+    topics</title>
+</head>
+
+<body>
+<p>
+This webpage contains supplementary material for the paper "Deconstructing
+domain names to reveal latent topics" by Cheryl J. Flynn, Kenneth E. Shirley,
+and Wei Wang.
+</p>
+
+<p>
+In the paper we fit three types of topic models with various numbers of topics
+to two collections of domain names. There was not enough room in the paper,
+of course, to summarize all the topics in these model fits, so here we share
+information about the model that was fit to one of the two data sets, the DMOZ
+data. This corpus of documents (where each segmented domain name is treated as
+a single document) contains D = 443,266 documents, N = 1,047,109 total tokens,
+and a vocabulary of W = 17,636 unique terms. Here we share the fit of the
+Biterm Topic Model (BTM) to this data where the number of topics was set to
+K = 250.
+</p>
+
+<p>
+We share three supplementary data sets:
+<ol>
+<li>
+<a href = 'data.csv'>data.csv</a>: This comma-separated file contains
+443,266 rows and four columns (plus a header row with column names). There
+is one row for each document in the DMOZ sample, and the four columns contain
+each document's raw domain name, tokenized domain name, most probable topic
+(an integer from 1 to 250), and the corresponding probability of the
+most probable topic.
+<pre>
+                             Raw                 Tokenized Main BTM Topic Probability
+1          chasefurniture.com.au           chase,furniture             94       0.954
+2               flamingolake.com             flamingo,lake            208       0.706
+3                    tvguide.com                  tv,guide            135       0.930
+4  all-about-cyprus-yachting.com all,about,cyprus,yachting             29       0.402
+5                  newadvent.org                new,advent             26       0.445
+6      winecountrysequential.com              wine,country            115       0.240
+7      distinctivedirections.com    distinctive,directions            127       0.902
+8                 murphyship.com               murphy,ship             74       0.968
+9         laperlaranchresort.com           la,ranch,resort            159       0.413
+10           mikethurston.org.uk             mike,thurston            234       0.977
+</pre>
+</li>
+<li>
+<a href='vocab.txt'>vocab.txt</a>: This file contains the vocabulary of the
+DMOZ topic model, with one term per line, and 17,636 lines.
+<pre>
+chase
+furniture
+flamingo
+lake
+tv
+guide
+all
+about
+cyprus
+yachting
+</pre>
+</li>
+<!--
+<li>
+<a href='dmoz-topics-table.csv'>dmoz-topics-table.csv</a>: This comma-separated
+ file contains 448 rows and 3 columns (plus a header row), where there is one
+ row per second-level DMOZ topic, and the columns contains the DMOZ topic ID
+ number, the DMOZ topic name, and the number of domain names that belong to
+ each DMOZ topic (out of a total of 598,710).
+<pre>
+ dmoz.topic                                   name frequency
+          1      Society/Religion_and_Spirituality     44855
+          2                             Arts/Music     23213
+          3 Business/Industrial_Goods_and_Services     15218
+          4  Business/Construction_and_Maintenance     13899
+          5                     Computers/Software     13819
+          6                            Society/Law     13617
+          7                     Computers/Internet     13455
+          8             Business/Business_Services     12793
+          9        Business/Arts_and_Entertainment     12014
+         10   Business/Consumer_Goods_and_Services     11716
+</pre>
+</li>
+-->
+<li>
+<a href='topics.csv'>topics.csv</a>: This comma-separated file contains
+250 * 30 = 7500 rows and five columns (and a header row). The rows contain
+the top-30 most relevant terms for each of the 250 topics, where the
+relevance of a term to a topic was calculated as in
+<a href='http://kennyshirley.com/papers/sievert-shirley-illvi2014.pdf'>Sievert
+  and Shirley (2014)</a>, where:
+
+<p>relevance(term w, topic k) = lambda *log(p(w | k)) + (1 - lambda) *
+  log(p(w | k)/p(w)),</p>
+
+and we set lambda = 0.6. This is designed to rank terms within topics as a
+roughly equally weighted average of the terms <i>frequency</i> and the
+term's <i>exclusivity</i> to that particular topic. The columns contain,
+for each term, the BTM Topic ID, the relevance rank within this topic, the
+term itself, the relevance of the term, and the probability of the term
+within the topic.
+<pre>
+BTM.topic Relevance.rank  Term Probability Relevance
+         1              1   phi       0.071     0.914
+         1              2 sigma       0.072     0.858
+         1              3 alpha       0.066     0.518
+         1              4 gamma       0.030     0.387
+         1              5  beta       0.035     0.327
+         1              6 kappa       0.025     0.274
+         1              7 delta       0.048     0.259
+         1              8   chi       0.040     0.203
+         1              9 theta       0.017     0.027
+         1             10   psi       0.022    -0.091
+</pre>
+</li>
+</ol>
+</p>
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="author" content="Kenneth E. Shirley" />
+
+<meta name="date" content="2016-01-12" />
+
+<title>Summary Trees Example: DMOZ topic hierarchy</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link href="data:text/css,body%20%7B%0A%20%20background%2Dcolor%3A%20%23fff%3B%0A%20%20margin%3A%201em%20auto%3B%0A%20%20max%2Dwidth%3A%20700px%3B%0A%20%20overflow%3A%20visible%3B%0A%20%20padding%2Dleft%3A%202em%3B%0A%20%20padding%2Dright%3A%202em%3B%0A%20%20font%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0A%20%20font%2Dsize%3A%2014px%3B%0A%20%20line%2Dheight%3A%201%2E35%3B%0A%7D%0A%0A%23header%20%7B%0A%20%20text%2Dalign%3A%20center%3B%0A%7D%0A%0A%23TOC%20%7B%0A%20%20clear%3A%20both%3B%0A%20%20margin%3A%200%200%2010px%2010px%3B%0A%20%20padding%3A%204px%3B%0A%20%20width%3A%20400px%3B%0A%20%20border%3A%201px%20solid%20%23CCCCCC%3B%0A%20%20border%2Dradius%3A%205px%3B%0A%0A%20%20background%2Dcolor%3A%20%23f6f6f6%3B%0A%20%20font%2Dsize%3A%2013px%3B%0A%20%20line%2Dheight%3A%201%2E3%3B%0A%7D%0A%20%20%23TOC%20%2Etoctitle%20%7B%0A%20%20%20%20font%2Dweight%3A%20bold%3B%0A%20%20%20%20font%2Dsize%3A%2015px%3B%0A%20%20%20%20margin%2Dleft%3A%205px%3B%0A%20%20%7D%0A%0A%20%20%23TOC%20ul%20%7B%0A%20%20%20%20padding%2Dleft%3A%2040px%3B%0A%20%20%20%20margin%2Dleft%3A%20%2D1%2E5em%3B%0A%20%20%20%20margin%2Dtop%3A%205px%3B%0A%20%20%20%20margin%2Dbottom%3A%205px%3B%0A%20%20%7D%0A%20%20%23TOC%20ul%20ul%20%7B%0A%20%20%20%20margin%2Dleft%3A%20%2D2em%3B%0A%20%20%7D%0A%20%20%23TOC%20li%20%7B%0A%20%20%20%20line%2Dheight%3A%2016px%3B%0A%20%20%7D%0A%0Atable%20%7B%0A%20%20margin%3A%201em%20auto%3B%0A%20%20border%2Dwidth%3A%201px%3B%0A%20%20border%2Dcolor%3A%20%23DDDDDD%3B%0A%20%20border%2Dstyle%3A%20outset%3B%0A%20%20border%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0A%20%20border%2Dwidth%3A%202px%3B%0A%20%20padding%3A%205px%3B%0A%20%20border%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0A%20%20border%2Dwidth%3A%201px%3B%0A%20%20border%2Dstyle%3A%20inset%3B%0A%20%20line%2Dheight%3A%2018px%3B%0A%20%20padding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0A%20%20border%2Dleft%2Dstyle%3A%20none%3B%0A%20%20border%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0A%20%20background%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0A%0Ap%20%7B%0A%20%20margin%3A%200%2E5em%200%3B%0A%7D%0A%0Ablockquote%20%7B%0A%20%20background%2Dcolor%3A%20%23f6f6f6%3B%0A%20%20padding%3A%200%2E25em%200%2E75em%3B%0A%7D%0A%0Ahr%20%7B%0A%20%20border%2Dstyle%3A%20solid%3B%0A%20%20border%3A%20none%3B%0A%20%20border%2Dtop%3A%201px%20solid%20%23777%3B%0A%20%20margin%3A%2028px%200%3B%0A%7D%0A%0Adl%20%7B%0A%20%20margin%2Dleft%3A%200%3B%0A%7D%0A%20%20dl%20dd%20%7B%0A%20%20%20%20margin%2Dbottom%3A%2013px%3B%0A%20%20%20%20margin%2Dleft%3A%2013px%3B%0A%20%20%7D%0A%20%20dl%20dt%20%7B%0A%20%20%20%20font%2Dweight%3A%20bold%3B%0A%20%20%7D%0A%0Aul%20%7B%0A%20%20margin%2Dtop%3A%200%3B%0A%7D%0A%20%20ul%20li%20%7B%0A%20%20%20%20list%2Dstyle%3A%20circle%20outside%3B%0A%20%20%7D%0A%20%20ul%20ul%20%7B%0A%20%20%20%20margin%2Dbottom%3A%200%3B%0A%20%20%7D%0A%0Apre%2C%20code%20%7B%0A%20%20background%2Dcolor%3A%20%23f7f7f7%3B%0A%20%20border%2Dradius%3A%203px%3B%0A%20%20color%3A%20%23333%3B%0A%7D%0Apre%20%7B%0A%20%20white%2Dspace%3A%20pre%2Dwrap%3B%20%20%20%20%2F%2A%20Wrap%20long%20lines%20%2A%2F%0A%20%20border%2Dradius%3A%203px%3B%0A%20%20margin%3A%205px%200px%2010px%200px%3B%0A%20%20padding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0A%20%20background%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0A%0Acode%20%7B%0A%20%20font%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0A%20%20font%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0A%20%20padding%3A%202px%200px%3B%0A%7D%0A%0Adiv%2Efigure%20%7B%0A%20%20text%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0A%20%20background%2Dcolor%3A%20%23FFFFFF%3B%0A%20%20padding%3A%202px%3B%0A%20%20border%3A%201px%20solid%20%23DDDDDD%3B%0A%20%20border%2Dradius%3A%203px%3B%0A%20%20border%3A%201px%20solid%20%23CCCCCC%3B%0A%20%20margin%3A%200%205px%3B%0A%7D%0A%0Ah1%20%7B%0A%20%20margin%2Dtop%3A%200%3B%0A%20%20font%2Dsize%3A%2035px%3B%0A%20%20line%2Dheight%3A%2040px%3B%0A%7D%0A%0Ah2%20%7B%0A%20%20border%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0A%20%20padding%2Dtop%3A%2010px%3B%0A%20%20padding%2Dbottom%3A%202px%3B%0A%20%20font%2Dsize%3A%20145%25%3B%0A%7D%0A%0Ah3%20%7B%0A%20%20border%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0A%20%20padding%2Dtop%3A%2010px%3B%0A%20%20font%2Dsize%3A%20120%25%3B%0A%7D%0A%0Ah4%20%7B%0A%20%20border%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0A%20%20margin%2Dleft%3A%208px%3B%0A%20%20font%2Dsize%3A%20105%25%3B%0A%7D%0A%0Ah5%2C%20h6%20%7B%0A%20%20border%2Dbottom%3A%201px%20solid%20%23ccc%3B%0A%20%20font%2Dsize%3A%20105%25%3B%0A%7D%0A%0Aa%20%7B%0A%20%20color%3A%20%230033dd%3B%0A%20%20text%2Ddecoration%3A%20none%3B%0A%7D%0A%20%20a%3Ahover%20%7B%0A%20%20%20%20color%3A%20%236666ff%3B%20%7D%0A%20%20a%3Avisited%20%7B%0A%20%20%20%20color%3A%20%23800080%3B%20%7D%0A%20%20a%3Avisited%3Ahover%20%7B%0A%20%20%20%20color%3A%20%23BB00BB%3B%20%7D%0A%20%20a%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0A%20%20%20%20text%2Ddecoration%3A%20underline%3B%20%7D%0A%20%20a%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0A%20%20%20%20text%2Ddecoration%3A%20underline%3B%20%7D%0A%0A%2F%2A%20Class%20described%20in%20https%3A%2F%2Fbenjeffrey%2Ecom%2Fposts%2Fpandoc%2Dsyntax%2Dhighlighting%2Dcss%0A%20%20%20Colours%20from%20https%3A%2F%2Fgist%2Egithub%2Ecom%2Frobsimmons%2F1172277%20%2A%2F%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%2F%2A%20Keyword%20%2A%2F%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%2F%2A%20DataType%20%2A%2F%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%2F%2A%20DecVal%20%28decimal%20values%29%20%2A%2F%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%2F%2A%20BaseN%20%2A%2F%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%2F%2A%20Float%20%2A%2F%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%2F%2A%20Char%20%2A%2F%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%2F%2A%20String%20%2A%2F%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%2F%2A%20Comment%20%2A%2F%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%2F%2A%20OtherToken%20%2A%2F%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%2F%2A%20AlertToken%20%2A%2F%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%2F%2A%20Function%20calls%20%2A%2F%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%2F%2A%20ErrorTok%20%2A%2F%0A%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+<div id="header">
+<h1 class="title">Summary Trees Example: DMOZ topic hierarchy</h1>
+<h4 class="author"><em>Kenneth E. Shirley</em></h4>
+<h4 class="date"><em>2016-01-12</em></h4>
+</div>
+
+
+<div id="exploring-the-structure-of-the-dmoz-topic-hierarchy-using-summary-trees" class="section level2">
+<h2>Exploring the structure of the DMOZ topic hierarchy using summary trees</h2>
+<p>Here we’ll describe how to compute maximum entropy summary trees to visualize the topic hierarcy of a subset of the URLs in DMOZ (aka the Open Directory Project).</p>
+<p>The DMOZ directory of URLs contains about 3.7 million URLs (as of April 2015), and each URL is classified into a <i>topic</i> in the DMOZ topic hierarchy, which contains about 600,000 unique topics. The topic hierarchy is a tree whose maximum depth is 15 levels. In this vignette we will describe:</p>
+<ol style="list-style-type: decimal">
+<li><p>How to process the raw DMOZ data to extract just the counts of URLs that are classified into the “Top/Sports” subtree.</p></li>
+<li><p>How to prepare this data for computation of maximum entropy summary trees, and how to subsequently compute them.</p></li>
+<li><p>How to visualize the resulting series of maximum entropy summary trees using d3.js.</p></li>
+</ol>
+<div id="processing-the-raw-dmoz-data" class="section level3">
+<h3>Processing the raw DMOZ data</h3>
+<p>First, we downloaded the DMOZ “content” data in April of 2015 from <a href="http://www.dmoz.org/rdf.html"><a href="http://www.dmoz.org/rdf.html" class="uri">http://www.dmoz.org/rdf.html</a></a>. This file was about 1.8 GB unzipped.</p>
+<p>Next, we use the command line to extract just the assigned topic of each of the approximately 3.77 million URLs and write them, one per line, to a file called “dmoz-topics.txt”.</p>
+<pre><code>grep &quot;&lt;topic&gt;&quot; content.rdf.u8 | sed 's/&lt;topic&gt;//g' | sed 's/&lt;\/topic&gt;//g' | sed 's/^    //g' &gt; dmoz-topics.txt</code></pre>
+<p>Next, we read this list of topics into R and compute their frequencies. Note this chunk is not computed here, because the file is too large to include with the <code>summarytrees</code> R package.</p>
+<pre class="sourceCode r"><code class="sourceCode r">raw &lt;-<span class="st"> </span><span class="kw">readLines</span>(<span class="st">&quot;dmoz-topics.txt&quot;</span>)
+
+<span class="co"># compute the frequency of each unique topic:</span>
+dmoz.table &lt;-<span class="st"> </span><span class="kw">table</span>(raw)
+<span class="kw">length</span>(dmoz.table) <span class="co"># There are 595,005 unique topics with at least one URL</span>
+
+<span class="co"># retain only those nodes that fall under &quot;Top/Sports/&quot;</span>
+sports.subtree &lt;-<span class="st"> </span>dmoz.table[<span class="kw">grep</span>(<span class="st">&quot;Top/Sports/&quot;</span>, <span class="kw">names</span>(dmoz.table))]
+<span class="kw">length</span>(sports.subtree)  <span class="co"># There are 14,284 unique topics in the Top/Sports subtree</span>
+<span class="kw">sum</span>(sports.subtree)  <span class="co"># There are 76,535 total URLs classified to this subtree</span>
+
+<span class="co"># separate into names + weights:</span>
+full.node &lt;-<span class="st"> </span><span class="kw">names</span>(sports.subtree)  <span class="co"># full node names with slashes</span>
+weight &lt;-<span class="st"> </span><span class="kw">as.integer</span>(sports.subtree)  <span class="co"># weights</span></code></pre>
+<p>Now we have to assign each node an ID number and compute the ID number of the node’s parent. The only complication here is that some nodes do not currently have their parent node listed in the data, because the parent node is an internal node to which zero URLs are directly assigned.</p>
+<p>The following block of code starts with the nodes of the tree that have nonzero weights, looks for their parents, and if any of their parents are not in the tree already, they are added to the tree.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># initialize variables</span>
+parent &lt;-<span class="st"> </span><span class="ot">NULL</span>  <span class="co"># the vector of all parents</span>
+n.added &lt;-<span class="st"> </span><span class="ot">NULL</span>  <span class="co"># how many new internal nodes added each iteration</span>
+iter &lt;-<span class="st"> </span><span class="dv">0</span>  <span class="co"># count iterations (just out of curiosity)</span>
+to.split &lt;-<span class="st"> </span>full.node  <span class="co"># the set of full names to split</span>
+new.parent &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>, <span class="kw">length</span>(weight))  <span class="co"># parents of each round of nodes</span>
+
+t1 &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
+while (<span class="kw">sum</span>(<span class="kw">is.na</span>(new.parent)) &gt;<span class="st"> </span><span class="dv">0</span>) {
+  iter &lt;-<span class="st"> </span>iter +<span class="st"> </span><span class="dv">1</span>
+  <span class="kw">print</span>(iter)
+
+  <span class="co"># split by slash and extract the leaf label of each node, and the 'stem'</span>
+  split.node &lt;-<span class="st"> </span><span class="kw">strsplit</span>(to.split, <span class="st">&quot;/&quot;</span>)
+  label &lt;-<span class="st"> </span><span class="kw">sapply</span>(split.node, function(x) <span class="kw">tail</span>(x, <span class="dv">1</span>))
+  stem &lt;-<span class="st"> </span><span class="kw">sapply</span>(split.node, function(x) <span class="kw">paste</span>(x[-<span class="kw">length</span>(x)], <span class="dt">collapse =</span> <span class="st">&quot;/&quot;</span>))
+
+  <span class="co"># compute the parent of each node:</span>
+  new.parent &lt;-<span class="st"> </span><span class="kw">match</span>(stem, full.node)
+
+  <span class="co"># if new.parent is NA, then we have to add an internal node</span>
+  <span class="co"># get unique internal nodes that must be added</span>
+  new.internal.nodes &lt;-<span class="st"> </span><span class="kw">unique</span>(stem[<span class="kw">is.na</span>(new.parent)])
+  n.added &lt;-<span class="st"> </span><span class="kw">c</span>(n.added, <span class="kw">length</span>(new.internal.nodes))
+  <span class="co"># add the new internal nodes to the full list</span>
+  full.node &lt;-<span class="st"> </span><span class="kw">c</span>(full.node, new.internal.nodes)
+  <span class="co"># internal nodes have a weight of zero by definition here</span>
+  weight &lt;-<span class="st"> </span><span class="kw">c</span>(weight, <span class="kw">rep</span>(<span class="dv">0</span>, <span class="kw">length</span>(new.internal.nodes)))
+  <span class="co"># set up the next set of nodes whose parents must be found</span>
+  to.split &lt;-<span class="st"> </span>new.internal.nodes
+  <span class="co"># add to the vector of parents</span>
+  parent &lt;-<span class="st"> </span><span class="kw">c</span>(parent, <span class="kw">match</span>(stem, full.node))
+}
+t2 &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
+t2 -<span class="st"> </span>t1</code></pre>
+<p>Now we compute the labels, we assemble the nodes, parents, weights, and labels in a data frame, and we clean up one pseudo-node that was computed as the parent of the root.</p>
+<pre class="sourceCode r"><code class="sourceCode r">label &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">strsplit</span>(full.node, <span class="st">&quot;/&quot;</span>), function(x) <span class="kw">tail</span>(x, <span class="dv">1</span>))
+
+<span class="co"># There should be one that is the 'parent' of the root, which is an empty node</span>
+<span class="co"># Give it a label of NA</span>
+label[<span class="kw">sapply</span>(label, length) ==<span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="ot">NA</span>
+label &lt;-<span class="st"> </span><span class="kw">unlist</span>(label)
+
+<span class="co"># Pull it all into a data.frame:</span>
+dmoz &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">node =</span> <span class="dv">1</span>:<span class="kw">length</span>(full.node),
+                   <span class="dt">parent =</span> parent,
+                   <span class="dt">weight =</span> weight,
+                   <span class="dt">label =</span> label,
+                   <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
+
+<span class="co"># identify the 'parent' of the root, which doesn't really exist:</span>
+to.remove &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">is.na</span>(dmoz[, <span class="st">&quot;label&quot;</span>]))
+
+<span class="co"># Set the parent of the root to zero</span>
+dmoz[dmoz[, <span class="st">&quot;parent&quot;</span>] ==<span class="st"> </span>to.remove, <span class="st">&quot;parent&quot;</span>] &lt;-<span class="st"> </span><span class="dv">0</span>
+
+<span class="co"># remove the 'parent' of the root</span>
+dmoz &lt;-<span class="st"> </span>dmoz[-to.remove, ]
+
+<span class="co"># Save this data frame to be included in the package:</span>
+<span class="kw">save</span>(dmoz, <span class="dt">file =</span> <span class="st">&quot;data/dmoz.RData&quot;</span>)</code></pre>
+</div>
+<div id="computing-maximum-entropy-summary-trees" class="section level3">
+<h3>Computing Maximum Entropy Summary Trees</h3>
+<p>Now we load the <code>summarytrees</code> package and compute maximum entropy summary trees using the greedy algorithm for this data for <span class="math">\(k = 1, 2, ..., K = 100\)</span>. Note that these aren’t technically <i>maximum entropy</i> summary trees since the greedy algorithm does not have any performance guarantees – we use it here because it’s much faster than the exact algorithm, and based on several experiments with real data, returns summary trees whose entropies are usually very close to the corresponding maximum entropy summary trees.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(summarytrees)</code></pre>
+<pre><code>#&gt; Loading required package: RJSONIO
+#&gt; Loading required package: RColorBrewer
+#&gt; Loading required package: servr</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(dmoz)
+
+<span class="co"># Look at the data a bit:</span>
+<span class="kw">dim</span>(dmoz)</code></pre>
+<pre><code>#&gt; [1] 15018     4</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">dmoz[<span class="dv">1</span>:<span class="dv">10</span>, ]</code></pre>
+<pre><code>#&gt;    node parent weight                   label
+#&gt; 1     1  14285      9        Adventure_Racing
+#&gt; 2     2      1     11                   Clubs
+#&gt; 3     3      1      6     Equipment_Suppliers
+#&gt; 4     4      1      1          News_and_Media
+#&gt; 5     5      1     53                   Races
+#&gt; 6     6      5      3 Single_Sport_Adventures
+#&gt; 7     7      1      6                 Schools
+#&gt; 8     8      1     23                   Teams
+#&gt; 9     9  14285      6                 Airsoft
+#&gt; 10   10      9     18        Chats_and_Forums</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Look at the breakdown between interanl nodes vs. leaves:</span>
+<span class="kw">table</span>(dmoz[, <span class="st">&quot;weight&quot;</span>] &gt;<span class="st"> </span><span class="dv">0</span>)</code></pre>
+<pre><code>#&gt; 
+#&gt; FALSE  TRUE 
+#&gt;   734 14284</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># compute a set of K summary trees:</span>
+t1 &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
+K &lt;-<span class="st"> </span><span class="dv">100</span>
+g &lt;-<span class="st"> </span><span class="kw">greedy</span>(<span class="dt">node =</span> dmoz[, <span class="st">&quot;node&quot;</span>],
+            <span class="dt">parent =</span> dmoz[, <span class="st">&quot;parent&quot;</span>],
+            <span class="dt">weight =</span> dmoz[, <span class="st">&quot;weight&quot;</span>],
+            <span class="dt">label =</span> dmoz[, <span class="st">&quot;label&quot;</span>],
+            <span class="dt">K =</span> K)</code></pre>
+<pre><code>#&gt; [1] &quot;Running order.nodes() function to prepare data&quot;
+#&gt; [1] &quot;  Computing node levels&quot;
+#&gt; [1] &quot;  Computing child indices for each parent&quot;
+#&gt; [1] &quot;Running C function to compute summary trees&quot;
+#&gt; [1] &quot;Computation finished; now formatting output&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">t2 &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
+t2 -<span class="st"> </span>t1</code></pre>
+<pre><code>#&gt; Time difference of 1.022814 secs</code></pre>
+<p>We can look at the <span class="math">\(k = 20\)</span>-node summary tree, for example, by typing</p>
+<pre class="sourceCode r"><code class="sourceCode r">g$summary.trees[[<span class="dv">20</span>]]</code></pre>
+<pre><code>#&gt;    node parent weight type           label
+#&gt; 1     1      0      0    1             Top
+#&gt; 2     2      1      0    1          Sports
+#&gt; 3     4      2   3371    2        Baseball
+#&gt; 4     7      2   6508    2      Equestrian
+#&gt; 5     8      2   5420    2        Football
+#&gt; 6     9      2   6005    2            Golf
+#&gt; 7    12      2   2954    2          Hockey
+#&gt; 8    13      2   3950    2    Martial_Arts
+#&gt; 9    14      2   3608    2     Motorsports
+#&gt; 10   16      2   1178    2        Softball
+#&gt; 11   18      2   1466    2 Track_and_Field
+#&gt; 12   19      2   5421    2      Basketball
+#&gt; 13   22      2   2525    2         Cycling
+#&gt; 14   25      2  11644    2          Soccer
+#&gt; 15   30      2   1494    2          Tennis
+#&gt; 16   31      2   1866    2   Winter_Sports
+#&gt; 17   42      2   1259    2      Volleyball
+#&gt; 18   47      2   3764    2    Water_Sports
+#&gt; 19   78      2   2197    2         Running
+#&gt; 20   NA      2  11905    3       63 others</code></pre>
+</div>
+<div id="visualizing-the-resulting-series-of-summary-trees" class="section level3">
+<h3>Visualizing the resulting series of summary trees:</h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Prepare the summary trees for visualization:</span>
+json &lt;-<span class="st"> </span><span class="kw">prepare.vis</span>(<span class="dt">tree.list =</span> g$summary.trees,
+                    <span class="dt">labels =</span> g$data[, <span class="st">&quot;label&quot;</span>],
+                    <span class="dt">tree =</span> g$tree,
+                    <span class="dt">legend.width =</span> <span class="dv">150</span>,
+                    <span class="dt">node.width =</span> <span class="dv">225</span>,
+                    <span class="dt">node.height =</span> <span class="dv">14</span>,
+                    <span class="dt">units =</span> <span class="st">&quot;# of URLs&quot;</span>,
+                    <span class="dt">print.weights =</span> <span class="ot">TRUE</span>,
+                    <span class="dt">legend.color =</span> <span class="st">&quot;lightsteelblue&quot;</span>,
+                    <span class="dt">color.level =</span> <span class="dv">3</span>)</code></pre>
+<p>Note that we set the <code>color.level = 3</code> because every node starts with “Top/Sports”, thus the third level is probably going to be the most useful for color-matching so that we can visually track the ancestry of each node in the summary trees.</p>
+<p>Last, serve the vis in the browser:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">draw.vis</span>(<span class="dt">json.object =</span> json,
+         <span class="dt">out.dir =</span> <span class="kw">tempfile</span>(),
+         <span class="dt">open.browser =</span> <span class="kw">interactive</span>())</code></pre>
+<p>To see this set of 100 maximum entropy summary trees, go to:</p>
+<p><a href="http://www.kennyshirley.com/summarytrees/dmozsports"><a href="http://www.kennyshirley.com/summarytrees/dmozsports" class="uri">http://www.kennyshirley.com/summarytrees/dmozsports</a></a></p>
+<p>From the visualization, we can see that:</p>
+<ol style="list-style-type: decimal">
+<li><p>The number of URLs per sport is relatively uniformly distributed. Looking at the <span class="math">\(k = 20\)</span>-node maximum entropy summary tree, we see that 18 individual sports are shown (as children of “Top/Sports”) and not one descendant of an individual sport is shown. This is a contrast to many other tree-structured data sets where one or two children of the root contain, say, half the weight of the entire tree, and thus some of their descendants would be members of the 20-node maximum entropy summary tree.</p></li>
+<li><p>From the 50-node summary tree, we see that the two largest children of “Top/Sports/Soccer” are “UEFA” and “CONCACAF”, which are the regional governing bodies for European and North/Central American soccer, respectively. Furthermore, within the UEFA subtree, the child node “England” contains about 5/6 of the weight (i.e. URLs).</p></li>
+<li><p>From the 100-node summary tree, we see that this tree is relatively “wide”. The maximum depth of the 100-node summary tree is 6 (in the “Top/Sports/Soccer” branch), and there are 36 individual children of “Top/Sports” visualized here (out of 100 nodes). Each child of “Top/Sports” is an individual sport. It might make more sense to insert another level of the hierarchy after “Top/Sports” that categorizes all individual sports in to 5-10 groups of similar sports, using attributes of the sports such as outdoor vs. indoor, team vs. individual, etc., to control the width of the tree. This would only be necessary if having a wide, shallow tree is suboptimal for visualizing/understanding the data.</p></li>
+</ol>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

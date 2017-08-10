@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LDAvis Demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="lda.css">
+    <script src="d3.v3.js"></script>
+    <script src="ldavis.js"></script>
+  </head>
+
+  <body>
+    <div id = "container" style = "width: 1240px">
+      <h3>
+	Demo page for LDAvis: A method for visualizing and interpreting topics
+      </h3>
+      <p>
+	This is a demo of 'LDAvis', our interactive visualization tool for topic models fit using LDA. Below is a visualization of a 40-topic model fit to the AP data (2246 Associated Press documents made available by David Blei on his <a href='http://www.cs.princeton.edu/~blei/lda-c/index.html' target='_blank'>website</a>).
+      </p>
+      <p>
+	For an explanation of our tool, see our paper, <a href='http://nlp.stanford.edu/events/illvi2014/papers/sievert-illvi2014.pdf' target='_blank'>LDAvis: A method for visualizing and interpreting topics</a>, to be presented at the <a href='http://nlp.stanford.edu/events/illvi2014/index.html' target='_blank'>2014 ACL Workshop on Interactive Language Learning, Visualization, and Interfaces</a> in Baltimore on June 27, 2014. Or check out <a href='https://github.com/cpsievert/LDAvis' target='_blank'>our repo on github</a>.
+      </p>
+
+      <p>
+	To use the visualization tool, click a circle in the left panel to select a topic, and the bar chart in the right panel will display the 30 most relevant terms for the selected topic, where we define the <i>relevance</i> of a term to a topic, given a weight parameter, 0 &le; &#955; &le; 1, as &#955; log(p(term | topic)) + (1 - &#955;) log(p(term | topic)/p(term)). The red bars represent the frequency of a term in a given topic, (proportional to p(term | topic)), and the blue bars represent a term's frequency across the entire corpus, (proportional to p(term)). Change the value of &#955; to adjust the term rankings -- small values of &#955; (near 0) highlight potentially rare, but exclusive terms for the selected topic, and large values of &#955; (near 1) highlight frequent, but not necessarily exclusive, terms for the selected topic. A user study described in our paper suggested that setting &#955; near 0.6 aids users in topic interpretation, although we expect this to vary across topics and data sets (hence our tool, which allows you to flexiby adjust &#955;).
+      </p>
+      <p>
+	<a href='http://cpsievert.github.io/' target='_blank'>Carson Sievert</a> and <a href='http://www.kennyshirley.com' target='_blank'>Kenny Shirley</a>
+	<br>
+	May 28, 2014
+	<br>
+	[Updated: March 17, 2015]
+      </p>
+      <p>
+	PS. In case you were wondering, yes, these new articles are mostly from the late 1980s and early 1990s.
+      </p>
+
+      <hr>
+      <div id = "lda"></div>
+      <script>
+	var vis = new LDAvis("#lda", "lda.json");
+      </script>
+    </div>
+  </body>
+</html>

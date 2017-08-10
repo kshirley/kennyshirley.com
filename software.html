@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+  <link rel="stylesheet" href="style.css"/>
+  <title>Kenny Shirley - Software</title>
+</head>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-39167247-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<body>
+
+<table class="main" cellspacing="0" cellpadding="0">
+
+
+<tr>
+<td class="topleft" width="15%"></td>
+<td class="topright" width="100%">
+    <img width=162 height=192 src="figures/kshirley_att_idphoto2.jpg"
+    style="float:left; margin-right: 30px; margin-left:10px">
+    Kenny Shirley<br>
+		Statistician
+    <p>
+			I’m a research scientist in the demand forecasting group at Amazon in New York City. 
+			My research interests (past and present) include hierarchical Bayesian modeling, MCMC methods,
+			data and model visualization, text mining, and other topics related to applied statistics.
+    </p>
+    <p>
+    This is my personal site, which is a mix of statistics research, side
+    projects (mostly sports-related) and other stuff.
+    </p>
+</td>
+</tr>
+
+<tr>
+<td class="bottomleft" valign="top" width="15%">
+  <ul>
+    <li><a  href="index.html">Home</a></li>
+    <li><a  href="oldnews.html">Old News</a></li>
+    <li><a  href="publications.html">Publications</a></li>
+    <li><a  href="#">Software</a></li>
+    <li><a  href="contact.html">Contact</a></li>
+    <li><a  href="kennyshirley_cv_june2016.pdf">CV</a></li>
+  </ul>
+</td>
+<td class="bottomright" width="100%" valign="top">
+<p><b>SOFTWARE</b></p>
+
+<hr>
+
+<ul style='list-style-type: disc'>
+<li>R package <span style = 'font-family:courier'>summarytrees</span>:<br><br>
+  This is an R package (co-written with Howard Karloff) to compute and visualize
+  maximum entropy summary trees. If you have a large, node-weighted
+  tree (1000's of nodes, or more), our package aggregates the nodes in an
+  optimal way and interactively
+  visualizes the summary tree (typically 100s of nodes) using d3.js.
+  <ul>
+    <li>
+      [1] Here is a link to the
+      <a href='https://github.com/kshirley/summarytrees'>GitHub repo</a>.
+    </li>
+    <li>
+      [2] Here are two vignettes describing a data analysis using the package:
+      <ul>
+        <li>
+          Analyzing the <a href='summarytrees/vignettes/Gauss.html'>Gauss subtree
+          of the Mathematics Genalogy Project</a>.
+        </li>
+        <li>
+          Analyzing the hierarchy of the webpages listed in the
+          <a href='summarytrees/vignettes/DMOZ.html'>DMOZ directory of
+            webpages</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      [3] Here are a few examples of the interactive visualization:
+      <ul>
+        <li>The <a href='summarytrees/gauss'>Carl Gauss subtree of the Mathematics
+      Genealogy Project</a>
+        </li>
+        <li>The <a href='summarytrees/dmozsports'>Sports subtree of the DMOZ
+          directory of webpages</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      [4] Here is the <a href='papers/KarloffShirleyWebsite.pdf'>original
+        paper</a> describing the work (from EuroVis 2013).
+    </li>
+  </ul>
+<li>R package <span style = 'font-family:courier'>LDAvis</span>:<br><br>
+  The LDAvis package (co-written with Carson Sievert) provides an interactive
+  visualization of the topics learned from LDA. It is designed to
+  allow users to easily interpret topics, by showing, for each topic, a ranked
+  list of the most relevant
+  terms, where relevance is a combination of a term's <i>frequency within</i> and
+  <i>exclusivity to</i> a topic.
+  <ul>
+    <li>
+      [1a] Here is a link to the <a href='https://github.com/cpsievert/LDAvis'>
+      Github Repo</a>.
+    </li>
+    <li>
+      [2] LDAvis on <a href='https://cran.r-project.org/web/packages/LDAvis/index.html'>CRAN</a>.
+    </li>
+    <li>
+      [3] Here is an example of using LDAvis to visualize the
+      <a href='http://cpsievert.github.io/LDAvis/reviews/reviews.html'>topics
+        learned from a set of movie reviews</a>.
+    </li>
+    <li>
+      [4] Here is a <a href='LDAvis'>
+        demo of LDAvis on some old news articles</a>.
+    </li>
+    <li>
+      [5] Here is the <a href='papers/sievert-shirley-illvi2014.pdf'>
+      original paper</a> describing the work (ACL workshop
+      <a href='http://nlp.stanford.edu/events/illvi2014/'>ILLVI</a> 2014).
+    </li>
+  </ul>
+</ul>
+
+<hr>
+<script language="Javascript">
+document.write("This page was last modified on: " + document.lastModified +"");
+</script>
+
+</td>
+</tr>
+
+</table>
+
+
+</body>
+</html>

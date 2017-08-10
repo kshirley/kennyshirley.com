@@ -1,0 +1,16 @@
+graph ""{
+graph [rankdir=LR, outputorder=edgesfirst, margin=0.1, pad=0.2, ordering=out, label="Entropy = 1.93"];
+edge [penwidth=2, color=gray70];
+node [penwidth=2, color=black, fontsize=14];
+n1 [label="Top", style=dashed, shape=rectangle, color=skyblue, height=0.5];
+n1 -- n2;
+n2 [label="World", style=dashed, shape=rectangle, color=skyblue, height=0.5];
+n1 -- n3;
+n3 [label="Regional\n(948,392)", style=solid, width=.948392, shape=rectangle, fixedsize=true, color=skyblue, style=filled, height=0.5];
+n1 -- n4;
+n4 [label="13 others\n(1,088,060)", style=solid, width=1.088060, shape=rectangle, fixedsize=true, color=skyblue, style=filled, height=0.5];
+n2 -- n5;
+n5 [label="Deutsch\n(484,104)", style=solid, width=.484104, shape=rectangle, fixedsize=true, color=skyblue, style=filled, height=0.5];
+n2 -- n6;
+n6 [label="89 others\n(1,255,876)", style=solid, width=1.255876, shape=rectangle, fixedsize=true, color=skyblue, style=filled, height=0.5];
+}

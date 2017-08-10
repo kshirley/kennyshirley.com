@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+  <link rel="stylesheet" href="summarytreesstyle.css"/>
+	<title>Kenny Shirley - Maximum Entropy Summary Trees</title>
+</head>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-39167247-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+<body>
+
+<div id="main" class="center">
+
+<p style="font-size:30px" align="center">
+Maximum Entropy Summary Trees
+</p>
+
+<p>
+<a href="figures/fig_orgchart_60.pdf">
+<img width=700 height=201 src="figures/fig_orgchart_60.png">
+</a>
+</p>
+
+<hr>
+
+<p>
+This page permanently hosts the supplementary material for the paper "Maximum Entropy Summary Trees"
+by Howard Karloff and Kenneth E. Shirley. Here is a link to
+the <a href="papers/KarloffShirleyWebsite.pdf">pdf of the paper</a>.
+</p>
+
+<p>
+Howard Karloff and Kenneth E. Shirley, "Maximum Entropy Summary Trees", <i>Computer Graphics Forum (Proc. EuroVis)</i>, Volume 32, Issue 3, Part 1, pp. 71-80, June 2013.
+</p>
+
+<hr>
+<p style="font-size:20px">
+APPENDIX
+</p>
+
+<p>
+Click here for <a href="papers/KarloffShirleyAppendix.pdf">the Appendix</a> to the paper.
+It contains proofs of some of the theorems in the paper, as well as an interesting 
+bad example for the greedy heuristic.
+</p>
+
+<hr>
+
+<p style="font-size:20px">
+EXAMPLES
+</p>
+
+Below are some example pictures of summary trees. Click any of the five links below to 
+view .pdf files, each of which contains a set of 99 summary trees 
+(with k=2, 3, ..., 100 nodes) for a real-world data set (where the data set descriptions 
+are taken from the paper):
+
+<ol>
+
+<li>
+<a href="summarytrees/summarytrees_webtraffic.pdf">Web Traffic</a>: A set of aggregated webpage visits to a 
+large Internet portal by a sample of a million users on one day in March, 2012. The nodes of 
+this tree are webpages that are organized hierarchically into categories (such as "/home/news/international/russia," 
+for example, or "/home/sports/baseball"), and the weights are the number of clicks per webpage 
+aggregated across all users. There are 19,335 nodes in this tree, with a depth of 17 levels, a 
+range of zero to 365 children per node, and total weight of over 260 million. The distribution 
+of weights per node is highly skewed, with one webpage receiving over 20% of all clicks, and a 
+long tail in which 45% of webpages received 3 or fewer clicks.
+</li>
+
+<li>
+The <a href="summarytrees/summarytrees_gauss.pdf">Carl Gauss subtree</a> of the Mathematics Genealogy Project: 
+This tree has 43,527 nodes, all given a weight of 1. For students with multiple advisors, we 
+forced the graph to be a tree by assigning the primary advisor as the parent. We 
+thank <a href="http://genealogy.math.ndsu.nodak.edu/">The Mathematics Genealogy Project</a> for 
+the use of its data.
+</li>
+
+<li>
+<a href="summarytrees/summarytrees_directory.pdf">Hard Drive</a>: One co-author's hard drive, which 
+contains 15,671 files and directories, with node weights set to file sizes in kilobytes. 
+This drive has a total of 143,990,819 kilobytes of disk space, where the tree has a 
+depth of 6 levels, and the number of children per node ranges from zero to 5,342.
+</li>
+
+<li>
+<a href="summarytrees/summarytrees_treeoflife.pdf">Tree of Life</a>: The phylogenetic tree data from 
+the <a href="http://tolweb.org/tree/">Tree of Life Web Project</a>. This tree has 94,080 nodes, 
+54,121 of which represent a species or subspecies (and were given a weight of 1), and the 
+other 39,959 of which represent a taxonomic categorization (such as ``animal" or 
+``plant," and thus were given a weight of zero).
+</li>
+
+<li>
+<a href="summarytrees/summarytrees_orgchart.pdf">Org chart</a>: A section of an employee organizational 
+chart, from a large company, which contains 43,134 employees, all given a weight of one.
+</li>
+
+</ol>
+
+</p>
+
+<p>
+For a good viewing experience, I like to open one of these .pdf files using Preview 
+(the default .pdf viewer for Mac), and choose two settings: (1) View &rarr; PDF 
+Display &rarr; Single Page, and (2) View &rarr; Automatically Resize, and then 
+scroll through the 99 pages of the file using the arrow keys. 
+</p>
+
+
+<br>
+<br>
+<br>
+<br>
+
+
+</div>
+
+
+</body>
+</html>

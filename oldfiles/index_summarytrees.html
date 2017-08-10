@@ -1,0 +1,107 @@
+<html>
+<head>
+<title>Kenny Shirley - Home Page</title>
+</head>
+
+<body>
+
+<p><img width=162 height=192 src="kshirley_att_idphoto2.jpg"></p>
+
+<p>
+Kenny Shirley<br>
+Senior member, technical staff<br>
+Statistics Research Department<br>
+<a href="http://www.research.att.com">AT&amp;T Labs Research</a></p>
+
+<p>I am a member of the <a href="http://www.research.att.com/%7Estat">Statistics
+Research Department</a> at AT&amp;T Labs in Florham Park, NJ, where I work on
+hierarchical Bayesian modeling, MCMC methods, hidden Markov models, and other
+topics related to applied statistics.</p>
+
+<hr>
+
+<p><b>NEWS</b></p>
+
+<p><i>June 8, 2012</i></p>
+
+<p>Here are some plots related to recent work with my colleague Howard Karloff.
+We're drawing summaries of large trees that we call ''Maximum Entropy Summary
+Trees'' using an algorithm that we've tested on a few examples. The idea is to
+summarize a large node-weighted tree (that has, perhaps, tens of thousands of
+nodes) by aggregating some of its nodes so that we can visualize the structure
+of the tree (i.e. a ''summary'' of the tree) using many fewer nodes ( &lt; 100
+nodes, for example).</p>
+
+<p>We'll post the paper with details soon. For now, here are some examples. A
+nice way to view these is using Preview on a mac, and selecting ''View &rarr; PDF
+Display &rarr; Single Page'' and also ''View &rarr; Automatically Resize''. Then if
+you hold down the right or down arrow, it's like watching an animation as the
+tree grows from 2 nodes to 100 nodes.</p>
+
+<p>1. <a href="http://www.research.att.com/~kshirley/summarytrees_mathgen.pdf">Math
+Genealogy</a>. (Thanks to the <a href="http://www.genealogy.ams.org/">Math
+Genealogy Project</a> for sharing their data). This tree has Friedrich Leibniz
+(PhD in 1622) as its root, and it has 50,639 nodes, each given a weight of one.
+We forced it to be a tree by selecting each student's primary advisor as
+his/her parent node in the tree, if he/she had multiple advisors or multiple
+PhDs.</p>
+
+<p>2. <a
+href="http://www.research.att.com/~kshirley/summarytrees_treeoflife.pdf">Tree
+of Life</a>. (Thanks to the <a href="http://tolweb.org/tree/">Tree of Life Web
+Project</a> for making their data available). These trees are very lopsided
+&#8211; most species in this data are insects. There are 94,080 nodes in the
+original tree, and each node labeled as a leaf in the original data (54,121 of
+them) is given a weight of one. The zero-weight nodes tend to be categories,
+like ''Animal'', rather than species.</p>
+
+<p>3. <a
+href="http://www.research.att.com/~kshirley/summarytrees_directory.pdf">Directory</a>.
+This tree represents the directory and file structure on my hard drive, where there 
+are 15,671 nodes, and the weights of the nodes are file sizes rounded to the nearest 
+megabyte (where directories have a weight of zero). A node with a black border in the 
+summary tree is a leaf in the original tree. Notice here that it's common for nodes 
+with the same parent to be of equal size -- this typically means (in the case of my computer)
+that these are either data files where there are many versions of the same data, or MCMC 
+output files, where there might be a different, equally-sized output file for 
+each starting point. This actually leads to bad visualizations (you don't need to see each
+of 30 copies of a similar file), but it's just a reflection of the data.</p>
+
+<p>4. <a
+href="http://www.research.att.com/~kshirley/summarytrees_orgchart.pdf">Organizational Chart</a>.
+This tree represents a subtree of a company organizational chart, where there are about 43,000
+nodes in the tree, and each has a weight of one.
+</p>
+
+<p>5. <a
+href="http://www.research.att.com/~kshirley/summarytrees_webtraffic.pdf">Web Traffic</a>.
+This tree represents web traffic from a sample of clicks to webpages on a large internet portal. The
+hierarchy of the tree is defined by the slashes in the URLs of the webpages, and the weights of
+the nodes correspond to the number of clicks a given webpage received during the sample time period. Notice
+the skewed distribution of clicks to the webpage categories at level 2 of the tree (in the k=10 summary tree, for example).
+The maximum entropy summary trees display nodes such that their weights are roughly evenly distributed,
+without respect to their level in the tree, thus providing a potentially new way to categorize
+webpages in a portal based on traffic volume.
+</p>
+<hr>
+
+<p><b>PAPERS</b></p>
+
+<p>Shirley, K.E., Small, D.S., Lynch, K.G., Maisto, S.A., and Oslin, D.W.
+(2010). Hidden Markov models for alcoholism treatment trial data. <i>Annals of
+Applied Statistics</i>, Vol. 4, No. 1, 366-395. [<a
+href="shirley_etal_2010.pdf">pdf]</a></p>
+
+<p>Jensen, S.T., Shirley, K.E., and Wyner, A.G., (2009). Bayesball: A Bayesian
+hierarchical model for evaluating fielding in major league baseball. <i>Annals
+of Applied Statistics</i>, Vol. 3, No. 2, 491-520. [<a
+href="jensen_etal_2009.pdf">pdf</a>]</p>
+
+<hr>
+
+<p><b>CONTACT</b></p>
+
+<p>email: kshirley[at]research[dot]att[dot]com</p>
+
+</body>
+</html>
